@@ -1,0 +1,19 @@
+{
+  "name": "tweetcollector",
+  "version": "1.0.0",
+  "description": "Retrieves the President's tweets and indexes them",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "elasticsearch": "^14.0.0",
+    "lodash": "^4.17.4",
+    "twitter": "^1.7.1",
+    "underscore": "^1.8.3",
+    "webpack": "^3.8.1"
+  }
+}
