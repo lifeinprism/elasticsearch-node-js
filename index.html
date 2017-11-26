@@ -13,16 +13,37 @@
 
     <div ng-if="results" class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Search results</h3>
+        <div class="search-bar form-inline" >
+          <input class="form-control" type="text"
+            ng-model="$ctrl.query"
+            ng-change="$ctrl.find($ctrl.query)" />
+          <button class="btn" ng-click="">
+          <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </div>
       </div>
+
+
+
       <div class="panel-body">
         <div ng-repeat="result in results">
-          <pre
+<!--           <pre
           ng-class="{'bg-primary':hovering}"
           ng-mouseenter="hovering=true"
           ng-mouseleave="hovering=false"
-          >{{ result._source | json }}
-          </pre>
+          >
+           {{ result._source | json }}  -->
+           <div
+          ng-class="{'bg-primary':hovering}"
+          ng-mouseenter="hovering=true"
+          ng-mouseleave="hovering=false"
+          >
+            {{ result._source.name }} <br>
+            {{ result._source.message }}<br>
+            {{ result._source.message_date }}<br>
+            {{ result._source.link }}<br>
+          </div>
+<!--           </pre> -->
         </div>
       </div>
     </div>

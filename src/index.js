@@ -8,9 +8,10 @@ angular.module('App', ['elasticsearch'])
 })
 
 .controller('MainCtrl', function($scope, client, esFactory) {
+
   client.search({
     index: 'twitter',
-    q: 'message:the',
+    q: `name:god`,
     size: 10
   })
   .then(resp => {

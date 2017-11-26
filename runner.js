@@ -1,4 +1,4 @@
-const handleRequest = require('./keys.js');
+const keys = require('./keys.js');
 const _ = require('underscore');
 const Twitter = require('twitter');
 const elastic = require('elasticsearch');
@@ -8,10 +8,10 @@ const elasticClient = new elastic.Client({
 
 
 const client = new Twitter({
-  consumer_key: consumer_key,
-  consumer_secret: consumer_secret,
-  access_token_key: access_token_key,
-  access_token_secret: access_token_secret
+  consumer_key: keys.consumer_key,
+  consumer_secret: keys.consumer_secret,
+  access_token_key: keys.access_token_key,
+  access_token_secret: keys.access_token_secret
 });
 
 
