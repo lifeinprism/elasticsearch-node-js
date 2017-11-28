@@ -2,53 +2,50 @@
 <html>
 <head>
   <title>Elastic.js Search Tool</title>
-  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 </head>
 
 <body ng-app="App">
-  <div ng-controller="MainCtrl" class="container">
+
+  <div ng-controller="MainCtrl" class="container" data-ng-init="init('opinion')">
     <h1>Elastic.js Search Tool</h1>
 
     <div ng-if="error" class="alert alert-danger" role="alert">{{error.message}}</div>
 
     <div ng-if="results" class="panel panel-default">
+      <div class="panel-heading" ng-if="results.length > 0">
+        There are {{ results.length }} results
+      </div>
+      <div class="panel-heading" ng-if="results.length === 0">
+        There are no results.
+      </div>
       <div class="panel-heading">
-        <div class="search-bar form-inline" >
-          <input class="form-control" type="text"
-            ng-model="$ctrl.query"
-            ng-change="$ctrl.find($ctrl.query)" />
-          <button class="btn" ng-click="">
-          <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </div>
+
+
+        <form class="search-bar form-inline">
+          <input class="form-control" type="text" ng-model="query" required />
+          <button class="btn" ng-click="init(query)">Submit!</button>
+        </form>
       </div>
 
 
+      <div class="panel-body" ng-repeat="result in results">
+         <div
+          ng-class="{'bg-primary':hovering}"
+          ng-mouseenter="hovering=true"
+          ng-mouseleave="hovering=false"
+          ng-mousedown="hovering=true"
+        >
 
-      <div class="panel-body">
-        <div ng-repeat="result in results">
-<!--           <pre
-          ng-class="{'bg-primary':hovering}"
-          ng-mouseenter="hovering=true"
-          ng-mouseleave="hovering=false"
-          >
-           {{ result._source | json }}  -->
-           <div
-          ng-class="{'bg-primary':hovering}"
-          ng-mouseenter="hovering=true"
-          ng-mouseleave="hovering=false"
-          >
-            {{ result._source.name }} <br>
-            {{ result._source.message }}<br>
-            {{ result._source.message_date }}<br>
-            {{ result._source.link }}<br>
-          </div>
-<!--           </pre> -->
+          {{ result._source.name }} <br>
+          {{ result._source.message }}<br>
+          {{ result._source.message_date }}<br>
+          {{ result._source.link }}<br>
+
         </div>
       </div>
     </div>
   </div>
-
 
   <script src="node_modules/angular/angular.min.js"></script>
   <script src="node_modules/elasticsearch-browser/elasticsearch.angular.min.js"></script>

@@ -9,10 +9,10 @@ angular.module('App', ['elasticsearch'])
 
 .controller('MainCtrl', function($scope, client, esFactory) {
 
-  client.search({
+  $scope.init = query => client.search({
     index: 'twitter',
-    q: `name:god`,
-    size: 10
+    q: `message:${query}`,
+    size: 100
   })
   .then(resp => {
     $scope.results = resp.hits.hits;
@@ -27,4 +27,4 @@ angular.module('App', ['elasticsearch'])
         'Make sure that it is running and listening at http://localhost:9200');
     }
   });
-});
+})
